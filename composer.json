@@ -1,0 +1,24 @@
+{
+  "name": "tahrz/simple-telegram-bot",
+  "description": "Packadge with connection service and simple helpers",
+  "keywords": ["PHP telegram bot", "simple telegram bot library"],
+  "type": "library",
+  "version": "0.1.0",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Taras Ziabukhin",
+      "email": "taras.ziabukhin@gmail.com",
+      "role": "Developer"
+    }
+  ],
+  "minimum-stability": "dev",
+  "require": {
+    "php": "^7.1"
+  },
+  "autoload": {
+    "psr-4": {
+      "SimpleTelegramBot\\": "src/"
+    }
+  }
+}

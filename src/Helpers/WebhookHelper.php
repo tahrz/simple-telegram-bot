@@ -1,40 +1,40 @@
 <?php
 
-namespace Brain\Helpers;
+namespace SimpleTelegramBot\Helpers;
 
-use SimpleTelegramBot\Services\ConnectionService;
+use SimpleTelegramBot\Services\CurlConnectionService;
 
 /**
  * Class WebhookHelper
  *
- * @package Brain\Helpers
+ * @package SimpleTelegramBot\Helpers
  */
 class WebhookHelper
 {
     /**
-     * @return ConnectionService
-     * @throws \Exception
+     * @param bool $assoc
+     * @return mixed
      */
-    public static function setWebhook()
+    public static function setWebhook(bool $assoc = false)
     {
-        return new ConnectionService('setWebhook?url=' . WEBHOOK_URL);
+        return CurlConnectionService::connect('setWebhook?url=' . WEBHOOK_URL, $assoc);
     }
 
     /**
-     * @return ConnectionService
-     * @throws \Exception
+     * @param bool $assoc
+     * @return mixed
      */
-    public static function getWebhook()
+    public static function removeWebhook(bool $assoc = false)
     {
-        return new ConnectionService('getWebhookInfo');
+        return CurlConnectionService::connect('setWebhook?url=', $assoc);
     }
 
     /**
-     * @return ConnectionService
-     * @throws \Exception
+     * @param bool $assoc
+     * @return mixed
      */
-    public static function removeWebhook()
+    public static function getWebhookInfo(bool $assoc = false)
     {
-        return new ConnectionService('setWebhook?=');
+        return CurlConnectionService::connect('getWebhookInfo', $assoc);
     }
 }

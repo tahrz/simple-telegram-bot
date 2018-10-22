@@ -18,16 +18,15 @@ define('WEBHOOK_URL', '<WEBHOOK_HTTPS_URL>');
 
 To create an API request, use:
 ```
-new \SimpleTelegramBot\Services\ConnectionService('<API_METHOD_NAME>');
+new \SimpleTelegramBot\Helpers\ConnectionHelper(ServiceType::class)->connect('<API_METHOD_NAME>', <assoc>);
 ```
-This method will return answer from API in array form. Or you will see error,
-because <API_METHOD_NAME> is incorrect.
+This method will return answer from API in array form. `ServiceType::class`, may be `\SimpleTelegramBot\Services\FileGetContentsConnectionService` or `\SimpleTelegramBot\Services\CurlConnectionService`. **assoc** parameter has bool type, and will return by default `object` (false). In true case, it will return `array`.
 
 > Also, you can use WebhookHelper, witch build under ConnectionService,
-> with `getWebhook`, `setWebhook` API methods.
+> with `getWebhook`, `setWebhook` API methods. Helpers use **ONLY** `CurlConnectionService()`
 
 ```
-$setWebhook = \SimpleTelegramBot\Helpers\WebhookHelper::setWebhook();
-$getWebhook = \SimpleTelegramBot\Helpers\WebhookHelper::getWebhook();
-$removeWebhook = \SimpleTelegramBot\Helpers\WebhookHelper::removeWebhook();
+$setWebhook = \SimpleTelegramBot\Helpers\WebhookHelper::getWebhookInfo(<assoc>);
+$getWebhook = \SimpleTelegramBot\Helpers\WebhookHelper::getWebhook(<assoc>);
+$removeWebhook = \SimpleTelegramBot\Helpers\WebhookHelper::removeWebhook(<assoc>);
 ```

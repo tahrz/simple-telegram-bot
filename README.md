@@ -1,6 +1,6 @@
 # Simple PHP telegram bot library 
 This library will help you, to create php telegram bot of any complexity. 
-> v 0.1.4
+> v 0.1.5
 
 **Add library to composer:**
 ```

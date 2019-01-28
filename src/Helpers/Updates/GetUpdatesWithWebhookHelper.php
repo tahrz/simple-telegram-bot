@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace SimpleTelegramBot\Services\Updates;
+namespace SimpleTelegramBot\Helpers\Updates;
 
 use SimpleTelegramBot\Contracts\GetUpdateInterface;
 

@@ -2,8 +2,6 @@
 
 namespace SimpleTelegramBot\Helpers;
 
-use SimpleTelegramBot\Services\CurlConnectionService;
-
 /**
  * Class WebhookHelper
  *
@@ -12,29 +10,26 @@ use SimpleTelegramBot\Services\CurlConnectionService;
 class WebhookHelper
 {
     /**
-     * @param bool $assoc
-     * @return mixed
+     * @return array
      */
-    public static function setWebhook(bool $assoc = false)
+    public static function setWebhook()
     {
-        return CurlConnectionService::connect('setWebhook?url=' . WEBHOOK_URL, $assoc);
+        return (new ConnectionHelper('setWebhook?url=' . WEBHOOK_URL))->asArray();
     }
 
     /**
-     * @param bool $assoc
-     * @return mixed
+     * @return array
      */
-    public static function removeWebhook(bool $assoc = false)
+    public static function removeWebhook()
     {
-        return CurlConnectionService::connect('setWebhook?url=', $assoc);
+        return (new ConnectionHelper('setWebhook?url='))->asArray();
     }
 
     /**
-     * @param bool $assoc
-     * @return mixed
+     * @return array
      */
-    public static function getWebhookInfo(bool $assoc = false)
+    public static function getWebhookInfo()
     {
-        return CurlConnectionService::connect('getWebhookInfo', $assoc);
+        return (new ConnectionHelper('getWebhookInfo'))->asArray();
     }
 }

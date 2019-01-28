@@ -2,39 +2,44 @@
 
 namespace SimpleTelegramBot\Helpers;
 
-use SimpleTelegramBot\Services\CurlConnectionService;
+use SimpleTelegramBot\Contracts\ConnectionServiceInterface;
 
 /**
  * Class MessageHelper
  *
  * @package SimpleTelegramBot\Helpers
  */
-class MessageHelper
+final class MessageHelper
 {
     /**
-     * @var int
+     * @var ConnectionServiceInterface
      */
-    private $dialogId;
+    private $connection;
 
     /**
      * MessageHelper constructor.
-     * @param int $id
+     *
+     * @param int $chatId
+     * @param string $message
      */
-    public function __construct(int $id)
+    public function __construct(int $chatId, string $message)
     {
-        $this->dialogId = $id;
+        $this->connection = new ConnectionHelper('sendMessage?chat_id=' . $chatId .'&text=' . $message);
     }
 
     /**
-     * @param string $message
-     * @param bool $assoc
-     * @return mixed
+     * @return array
      */
-    public function send(string $message, bool $assoc)
+    public function sendWithArrayResponse(): array
     {
-        $connectionService = new CurlConnectionService();
-        $connection = new ConnectionHelper($connectionService);
+        return $this->connection->asArray();
+    }
 
-        return $connection->connect('sendMessage?chat_id=' . $this->dialogId .'&text=' . $message, $assoc);
+    /**
+     * @return object
+     */
+    public function sendWithObjectResponse(): object
+    {
+        return $this->connection->asObject();
     }
 }

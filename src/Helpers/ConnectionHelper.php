@@ -2,7 +2,8 @@
 
 namespace SimpleTelegramBot\Helpers;
 
-use SimpleTelegramBot\Contracts\IConnectionService;
+use SimpleTelegramBot\Contracts\ConnectionServiceInterface;
+use SimpleTelegramBot\Services\Connection\CurlConnectionService;
 
 /**
  * Class ConnectionHelper
@@ -12,26 +13,33 @@ use SimpleTelegramBot\Contracts\IConnectionService;
 class ConnectionHelper
 {
     /**
-     * @var IConnectionService
+     * @var ConnectionServiceInterface
      */
     private $connectionService;
 
     /**
      * ConnectionHelper constructor.
-     * @param IConnectionService $connectionService
+     * @param string $action
      */
-    public function __construct(IConnectionService $connectionService)
+    public function __construct(string $action)
     {
-        $this->connectionService = $connectionService;
+        $this->connectionService = (new CurlConnectionService($action));
+    }
+
+
+    /**
+     * @return array
+     */
+    public function asArray(): array
+    {
+        return $this->connectionService->asArray();
     }
 
     /**
-     * @param string $action
-     * @param bool $assoc
-     * @return mixed
+     * @return object
      */
-    public function connect(string $action, bool $assoc)
+    public function asObject(): object
     {
-        return $this->connectionService->connect($action, $assoc);
+        return $this->connectionService->asObject();
     }
 }

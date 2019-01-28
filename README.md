@@ -1,6 +1,6 @@
 # Simple PHP telegram bot library 
 This library will help you, to create php telegram bot of any complexity. 
-> v 0.1.5
+> v 1.0.0
 
 **Add library to composer:**
 ```
@@ -18,15 +18,31 @@ define('WEBHOOK_URL', '<WEBHOOK_HTTPS_URL>');
 
 To create an API request, use:
 ```
-new \SimpleTelegramBot\Helpers\ConnectionHelper(ServiceType::class)->connect('<API_METHOD_NAME>', <assoc>);
+new ConnectionHelper('<API_METHOD_NAME>')->as<Array or Object>();
 ```
-This method will return answer from API in array form. `ServiceType::class`, may be `\SimpleTelegramBot\Services\FileGetContentsConnectionService` or `\SimpleTelegramBot\Services\CurlConnectionService`. **assoc** parameter has bool type, and will return by default `object` (false). In true case, it will return `array`.
+This method will return answer from API in array or object form.
 
 > Also, you can use WebhookHelper, witch build under ConnectionService,
 > with `getWebhook`, `setWebhook` API methods. Helpers use **ONLY** `CurlConnectionService()`
 
 ```
-$setWebhook = \SimpleTelegramBot\Helpers\WebhookHelper::getWebhookInfo(<assoc>);
-$getWebhook = \SimpleTelegramBot\Helpers\WebhookHelper::getWebhook(<assoc>);
-$removeWebhook = \SimpleTelegramBot\Helpers\WebhookHelper::removeWebhook(<assoc>);
+$setWebhook = WebhookHelper::getWebhookInfo();
+$getWebhook = WebhookHelper::setWebhook();
+$removeWebhook = WebhookHelper::removeWebhook();
+```
+`setWebhook()` will set a webhook on your `WEBHOOK_URL` url.
+
+> For getting Updates with or without webhook, you can use
+```
+// work only if you add webhook
+$updatesWithWebhook = (new GetUpdatesWithWebhookHelper())->as<Array or Object>;
+
+// work only without webhook
+$updatesWithoutWebhook = (new GetUpdatesHelper())->as<Array or Object>;
+```
+You always can choose, what type of data, you need to return, `array` or `object`
+
+> For sendind messages, you can use a helper
+```
+$messageSend = (new \SimpleTelegramBot\Helpers\MessageHelper(<CHAT_ID>, '<MESSAGE>'))->sendWith<Array or Object>Response()
 ```

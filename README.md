@@ -1,6 +1,6 @@
 # Simple PHP telegram bot library 
 This library will help you, to create php telegram bot of any complexity. 
-> v 1.0.2
+> v 1.0.3
 
 **Add library to composer:**
 ```
@@ -42,6 +42,6 @@ $updatesWithoutWebhook = (new GetUpdatesHelper())->as<Array or Object>;
 ```
 You always can choose, what type of data, you need to return, `array` or `object`
 
-> For sendind messages, you can use a helper
+> For sending messages, you can use a helper
 ```
 $messageSend = (new \SimpleTelegramBot\Helpers\MessageHelper(<CHAT_ID>, '<MESSAGE>'))->sendWith<Array or Object>Response()

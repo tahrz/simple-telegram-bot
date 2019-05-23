@@ -14,17 +14,17 @@ final class CurlConnectionService implements ConnectionServiceInterface
     private $output;
 
     /**
-     * CurlConnectionServiceInterface constructor.
+     * CurlConnectionService constructor.
      *
      * @param string $action
      */
     public function __construct(string $action)
     {
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, BASIC_API_URL . $action);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        $output = curl_exec($ch);
-        curl_close($ch);
+        $connection = curl_init();
+        curl_setopt($connection, CURLOPT_URL, BASIC_API_URL . $action);
+        curl_setopt($connection, CURLOPT_RETURNTRANSFER, 1);
+        $output = curl_exec($connection);
+        curl_close($connection);
 
         $this->output = $output;
     }

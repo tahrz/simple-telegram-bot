@@ -9,7 +9,7 @@ use SimpleTelegramBot\Contracts\ConnectionServiceInterface;
  *
  * @package SimpleTelegramBot\Helpers
  */
-final class MessageHelper
+class MessageHelper
 {
     /**
      * @var ConnectionServiceInterface

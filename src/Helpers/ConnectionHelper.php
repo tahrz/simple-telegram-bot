@@ -2,7 +2,6 @@
 
 namespace SimpleTelegramBot\Helpers;
 
-use SimpleTelegramBot\Contracts\ConnectionServiceInterface;
 use SimpleTelegramBot\Services\Connection\CurlConnectionService;
 
 /**
@@ -13,33 +12,28 @@ use SimpleTelegramBot\Services\Connection\CurlConnectionService;
 class ConnectionHelper
 {
     /**
-     * @var ConnectionServiceInterface
-     */
-    private $connectionService;
-
-    /**
-     * ConnectionHelper constructor.
      * @param string $action
      */
-    public function __construct(string $action)
+    public static function sendWithoutAnswer(string $action)
     {
-        $this->connectionService = (new CurlConnectionService($action));
+        new CurlConnectionService($action);
     }
 
-
     /**
+     * @param string $action
      * @return array
      */
-    public function asArray(): array
+    public static function sendWithArrayAnswer(string $action): array
     {
-        return $this->connectionService->asArray();
+        return (new CurlConnectionService($action))->asArray();
     }
 
     /**
+     * @param string $action
      * @return object
      */
-    public function asObject(): object
+    public static function sendWithObjectAnswer(string $action): object
     {
-        return $this->connectionService->asObject();
+        return (new CurlConnectionService($action))->asObject();
     }
 }

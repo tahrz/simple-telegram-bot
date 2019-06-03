@@ -13,24 +13,11 @@ use SimpleTelegramBot\Contracts\GetUpdateInterface;
 class GetUpdatesHelper implements GetUpdateInterface
 {
     /**
-     * @var ConnectionHelper
-     */
-    private $update;
-
-    /**
-     * GetUpdatesHelper constructor.
-     */
-    public function __construct()
-    {
-        $this->update = (new ConnectionHelper('getUpdates'));
-    }
-
-    /**
      * @return array
      */
     public function asArray(): array
     {
-        return $this->update->asArray();
+        return ConnectionHelper::sendWithArrayAnswer('getUpdates');
     }
 
     /**
@@ -38,6 +25,6 @@ class GetUpdatesHelper implements GetUpdateInterface
      */
     public function asObject(): object
     {
-        return $this->update->asObject();
+        return ConnectionHelper::sendWithObjectAnswer('getUpdates');
     }
 }

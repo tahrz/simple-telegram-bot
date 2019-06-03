@@ -1,6 +1,6 @@
 # Simple PHP telegram bot library 
 This library will help you, to create php telegram bot of any complexity. 
-> v 1.0.3
+> v 1.2.0
 
 **Add library to composer:**
 ```
@@ -18,7 +18,9 @@ define('WEBHOOK_URL', '<WEBHOOK_HTTPS_URL>');
 
 To create an API request, use:
 ```
-new ConnectionHelper('<API_METHOD_NAME>')->as<Array or Object>();
+ConnectionHelper::sendWithoutAnswer('<API_METHOD_NAME>');
+ConnectionHelper::sendWithArrayAnswer('<API_METHOD_NAME>'); 
+ConnectionHelper::sendWithObjectAnswer('<API_METHOD_NAME>'); 
 ```
 This method will return answer from API in array or object form.
 
@@ -40,8 +42,10 @@ $updatesWithWebhook = (new GetUpdatesWithWebhookHelper())->as<Array or Object>;
 // work only without webhook
 $updatesWithoutWebhook = (new GetUpdatesHelper())->as<Array or Object>;
 ```
-You always can choose, what type of data, you need to return, `array` or `object`
+You always can choose, what type of data, you need to return, `array` or `object` or even do not return you any data.
 
 > For sending messages, you can use a helper
 ```
-$messageSend = (new \SimpleTelegramBot\Helpers\MessageHelper(<CHAT_ID>, '<MESSAGE>'))->sendWith<Array or Object>Response()
+$messageSendWithResponse = MessageHelper::sendWithArrayResponse(<CHAT_ID>, '<MESSAGE>')
+$messageSendWithResponse = MessageHelper::sendWithObjectResponse(<CHAT_ID>, '<MESSAGE>')
+$messageSendWithoutResponse = MessageHelper::sendWithoutResponse(<CHAT_ID>, '<MESSAGE>')

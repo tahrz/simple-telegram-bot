@@ -14,7 +14,7 @@ class WebhookHelper
      */
     public static function setWebhook()
     {
-        return (new ConnectionHelper('setWebhook?url=' . WEBHOOK_URL))->asArray();
+        return ConnectionHelper::sendWithArrayAnswer('setWebhook?url=' . WEBHOOK_URL);
     }
 
     /**
@@ -22,7 +22,7 @@ class WebhookHelper
      */
     public static function removeWebhook()
     {
-        return (new ConnectionHelper('setWebhook?url='))->asArray();
+        return ConnectionHelper::sendWithArrayAnswer('setWebhook?url=');
     }
 
     /**
@@ -30,6 +30,6 @@ class WebhookHelper
      */
     public static function getWebhookInfo()
     {
-        return (new ConnectionHelper('getWebhookInfo'))->asArray();
+        return ConnectionHelper::sendWithArrayAnswer('getWebhookInfo');
     }
 }

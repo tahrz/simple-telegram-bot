@@ -2,8 +2,6 @@
 
 namespace SimpleTelegramBot\Helpers;
 
-use SimpleTelegramBot\Contracts\ConnectionServiceInterface;
-
 /**
  * Class MessageHelper
  *
@@ -12,34 +10,31 @@ use SimpleTelegramBot\Contracts\ConnectionServiceInterface;
 class MessageHelper
 {
     /**
-     * @var ConnectionServiceInterface
-     */
-    private $connection;
-
-    /**
-     * MessageHelper constructor.
-     *
      * @param int $chatId
      * @param string $message
      */
-    public function __construct(int $chatId, string $message)
+    public static function sendWithoutAnswer(int $chatId, string $message)
     {
-        $this->connection = new ConnectionHelper('sendMessage?chat_id=' . $chatId .'&text=' . $message);
+        ConnectionHelper::sendWithoutAnswer('sendMessage?chat_id=' . $chatId .'&text=' . $message);
     }
 
     /**
+     * @param int $chatId
+     * @param string $message
      * @return array
      */
-    public function sendWithArrayResponse(): array
+    public static function sendWithArrayResponse(int $chatId, string $message): array
     {
-        return $this->connection->asArray();
+        return ConnectionHelper::sendWithArrayAnswer('sendMessage?chat_id=' . $chatId .'&text=' . $message);
     }
 
     /**
+     * @param int $chatId
+     * @param string $message
      * @return object
      */
-    public function sendWithObjectResponse(): object
+    public static function sendWithObjectResponse(int $chatId, string $message): object
     {
-        return $this->connection->asObject();
+        return ConnectionHelper::sendWithObjectAnswer('sendMessage?chat_id=' . $chatId .'&text=' . $message);
     }
 }

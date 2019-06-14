@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace SimpleTelegramBot\Helpers;
 
@@ -12,7 +12,7 @@ class WebhookHelper
     /**
      * @return array
      */
-    public static function setWebhook()
+    public static function setWebhook(): array
     {
         return ConnectionHelper::sendWithArrayAnswer('setWebhook?url=' . WEBHOOK_URL);
     }
@@ -20,7 +20,7 @@ class WebhookHelper
     /**
      * @return array
      */
-    public static function removeWebhook()
+    public static function removeWebhook(): array
     {
         return ConnectionHelper::sendWithArrayAnswer('setWebhook?url=');
     }
@@ -28,7 +28,7 @@ class WebhookHelper
     /**
      * @return array
      */
-    public static function getWebhookInfo()
+    public static function getWebhookInfo(): array
     {
         return ConnectionHelper::sendWithArrayAnswer('getWebhookInfo');
     }

@@ -2,15 +2,15 @@
 
 namespace SimpleTelegramBot\Helpers\Updates;
 
+use SimpleTelegramBot\Contracts\GetUpdate;
 use SimpleTelegramBot\Helpers\ConnectionHelper;
-use SimpleTelegramBot\Contracts\GetUpdateInterface;
 
 /**
  * Class GetUpdatesHelper
  *
  * @package SimpleTelegramBot\Services\Updates
  */
-class GetUpdatesHelper implements GetUpdateInterface
+class GetUpdateHelper implements GetUpdate
 {
     /**
      * @return array

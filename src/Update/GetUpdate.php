@@ -7,7 +7,7 @@ namespace SimpleTelegramBot\Contracts;
  *
  * @package SimpleTelegramBot\Contracts
  */
-interface GetUpdateInterface
+interface GetUpdate
 {
     /**
      * @return array

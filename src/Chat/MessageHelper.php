@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace SimpleTelegramBot\Helpers;
 
@@ -13,7 +13,7 @@ class MessageHelper
      * @param int $chatId
      * @param string $message
      */
-    public static function sendWithoutAnswer(int $chatId, string $message)
+    public static function sendWithoutAnswer(int $chatId, string $message): void
     {
         ConnectionHelper::sendWithoutAnswer('sendMessage?chat_id=' . $chatId .'&text=' . $message);
     }

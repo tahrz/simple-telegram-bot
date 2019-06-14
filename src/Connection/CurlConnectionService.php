@@ -1,24 +1,23 @@
 <?php declare(strict_types=1);
 
-namespace SimpleTelegramBot\Services\Connection;
-
-use SimpleTelegramBot\Contracts\ConnectionServiceInterface;
+namespace SimpleTelegramBot\Connection;
 
 /**
- * Class CurlConnectionServiceInterface
+ * Class CurlConnectionService
  *
- * @package SimpleTelegramBot\Services
+ * @package SimpleTelegramBot\Services\Connection
  */
-final class CurlConnectionService implements ConnectionServiceInterface
+final class CurlConnectionService implements ConnectionService
 {
+    /**
+     * @var bool|string
+     */
     private $output;
 
     /**
-     * CurlConnectionService constructor.
-     *
      * @param string $action
      */
-    public function __construct(string $action)
+    public function init(string $action): void
     {
         $connection = curl_init();
         curl_setopt($connection, CURLOPT_URL, BASIC_API_URL . $action);
@@ -32,7 +31,7 @@ final class CurlConnectionService implements ConnectionServiceInterface
     /**
      * @return array
      */
-    public function asArray(): array
+    public function withArrayResponse(): array
     {
         return json_decode($this->output, true);
     }
@@ -40,7 +39,7 @@ final class CurlConnectionService implements ConnectionServiceInterface
     /**
      * @return object
      */
-    public function asObject(): object
+    public function withObjectResponse(): object
     {
         return json_decode($this->output, false);
     }

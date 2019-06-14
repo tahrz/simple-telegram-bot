@@ -2,14 +2,14 @@
 
 namespace SimpleTelegramBot\Helpers\Updates;
 
-use SimpleTelegramBot\Contracts\GetUpdateInterface;
+use SimpleTelegramBot\Contracts\GetUpdate;
 
 /**
  * Class GetUpdatesWithWebhookHelper
  *
  * @package SimpleTelegramBot\Services\Updates
  */
-class GetUpdatesWithWebhookHelper implements GetUpdateInterface
+class WebhookGetUpdateHelper implements GetUpdate
 {
     /**
      * @return array

@@ -5,23 +5,24 @@ namespace Tests\Unit\Connection;
 use Tests\LibraryTestCase;
 
 /**
- * Class ConnectionHelperTest
+ * Class CurlConnectionServiceTest
+ *
  * @package Tests\Unit\Connection
  */
-class ConnectionHelperTest extends LibraryTestCase
+class CurlConnectionServiceTest extends LibraryTestCase
 {
-    public function testSuccessfulSendWithArrayResponse()
+    public function testSuccessfulConnectWithArrayResponse()
     {
-        $result = static::$connectionHelper->sendWithArrayAnswer('someAction');
+        $result = static::$connectionService->withArrayResponse();
 
         self::assertEquals([], $result);
         self::assertNotEquals((object)[], $result);
         self::assertNotNull($result);
     }
 
-    public function testSuccessfulSendWithObjectResponse()
+    public function testSuccessfulConnectWithObjectResponse()
     {
-        $result = static::$connectionHelper->sendWithObjectAnswer('someAction');
+        $result = static::$connectionService->withObjectResponse();
 
         self::assertEquals((object)[], $result);
         self::assertNotEquals([], $result);

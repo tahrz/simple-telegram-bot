@@ -3,7 +3,7 @@
 namespace SimpleTelegramBot\Helpers\Updates;
 
 use SimpleTelegramBot\Contracts\GetUpdate;
-use SimpleTelegramBot\Helpers\ConnectionHelper;
+use SimpleTelegramBot\Connection\ConnectionService;
 
 /**
  * Class GetUpdatesHelper
@@ -13,11 +13,28 @@ use SimpleTelegramBot\Helpers\ConnectionHelper;
 class GetUpdateHelper implements GetUpdate
 {
     /**
+     * @var ConnectionService
+     */
+    private $connectionService;
+
+    /**
+     * ConnectionHelper constructor.
+     *
+     * @param ConnectionService $connectionService
+     */
+    public function __construct(ConnectionService $connectionService)
+    {
+        $this->connectionService = $connectionService;
+    }
+
+    /**
      * @return array
      */
     public function asArray(): array
     {
-        return ConnectionHelper::sendWithArrayAnswer('getUpdates');
+        $this->connectionService->init('getUpdates');
+
+        return $this->connectionService->withArrayResponse();
     }
 
     /**
@@ -25,6 +42,8 @@ class GetUpdateHelper implements GetUpdate
      */
     public function asObject(): object
     {
-        return ConnectionHelper::sendWithObjectAnswer('getUpdates');
+        $this->connectionService->init('getUpdates');
+
+        return $this->connectionService->withObjectResponse();
     }
 }

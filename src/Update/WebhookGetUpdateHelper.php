@@ -24,6 +24,6 @@ class WebhookGetUpdateHelper implements GetUpdate
      */
     public function asObject(): object
     {
-        return json_decode($this->update, false);
+        return json_decode(file_get_contents("php://input"), false);
     }
 }

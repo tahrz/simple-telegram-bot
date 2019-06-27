@@ -1,14 +1,15 @@
 <?php declare(strict_types=1);
 
-namespace Tests\Unit\Connection;
+namespace Tests\Unit\Chat;
 
 use Tests\LibraryTestCase;
 
 /**
- * Class ConnectionHelperTest
- * @package Tests\Unit\Connection
+ * Class MessageHelperTest
+ *
+ * @package Tests\Unit\Chat
  */
-class ConnectionHelperTest extends LibraryTestCase
+class MessageHelperTest extends LibraryTestCase
 {
     public function testSuccessfulSendWithArrayResponse()
     {

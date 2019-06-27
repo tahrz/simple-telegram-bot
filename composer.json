@@ -1,9 +1,9 @@
 {
   "name": "tahrz/simple-telegram-bot",
   "description": "Packadge with connection service and simple helpers",
-  "keywords": ["PHP telegram bot", "simple telegram bot library"],
+  "keywords": ["PHP telegram bot", "simple telegram bot library", "webhook", "telegram bot api", "PHP"],
   "type": "library",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "license": "MIT",
   "authors": [
     {

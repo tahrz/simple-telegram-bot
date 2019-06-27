@@ -1,18 +1,19 @@
 <?php declare(strict_types=1);
 
-namespace Tests\Unit\Connection;
+namespace Tests\Unit\Update;
 
 use Tests\LibraryTestCase;
 
 /**
- * Class ConnectionHelperTest
- * @package Tests\Unit\Connection
+ * Class GetUpdateHelperTest
+ *
+ * @package Tests\Unit\Update
  */
-class ConnectionHelperTest extends LibraryTestCase
+class GetUpdateHelperTest extends LibraryTestCase
 {
     public function testSuccessfulSendWithArrayResponse()
     {
-        $result = static::$connectionHelper->sendWithArrayAnswer('someAction');
+        $result = static::$connectionService->withArrayResponse();
 
         self::assertEquals([], $result);
         self::assertNotEquals((object)[], $result);
@@ -21,7 +22,7 @@ class ConnectionHelperTest extends LibraryTestCase
 
     public function testSuccessfulSendWithObjectResponse()
     {
-        $result = static::$connectionHelper->sendWithObjectAnswer('someAction');
+        $result = static::$connectionService->withObjectResponse();
 
         self::assertEquals((object)[], $result);
         self::assertNotEquals([], $result);

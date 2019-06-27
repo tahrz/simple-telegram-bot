@@ -12,7 +12,7 @@ class ConnectionHelper
     /**
      * @var ConnectionService
      */
-    private static $connectionService;
+    private $connectionService;
 
     /**
      * ConnectionHelper constructor.
@@ -21,36 +21,36 @@ class ConnectionHelper
      */
     public function __construct(ConnectionService $connectionService)
     {
-        static::$connectionService = $connectionService;
+        $this->connectionService = $connectionService;
     }
 
     /**
      * @param string $action
      */
-    public static function sendWithoutAnswer(string $action): void
+    public function sendWithoutAnswer(string $action): void
     {
-        static::$connectionService->init($action);
+        $this->connectionService->init($action);
     }
 
     /**
      * @param string $action
      * @return array
      */
-    public static function sendWithArrayAnswer(string $action): array
+    public function sendWithArrayAnswer(string $action): array
     {
-        static::$connectionService->init($action);
+        $this->connectionService->init($action);
 
-        return static::$connectionService->withArrayResponse();
+        return $this->connectionService->withArrayResponse();
     }
 
     /**
      * @param string $action
      * @return object
      */
-    public static function sendWithObjectAnswer(string $action): object
+    public function sendWithObjectAnswer(string $action): object
     {
-        static::$connectionService->init($action);
+        $this->connectionService->init($action);
 
-        return static::$connectionService->withObjectResponse();
+        return $this->connectionService->withObjectResponse();
     }
 }

@@ -3,6 +3,7 @@
 namespace Tests\Unit\Chat;
 
 use Tests\LibraryTestCase;
+use SimpleTelegramBot\Chat\MessageHelper;
 
 /**
  * Class MessageHelperTest
@@ -11,21 +12,39 @@ use Tests\LibraryTestCase;
  */
 class MessageHelperTest extends LibraryTestCase
 {
+    /**
+     * @var MessageHelper
+     */
+    private static $messageHelper;
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        static::$messageHelper = new MessageHelper(static::$connectionService);
+    }
+
     public function testSuccessfulSendWithArrayResponse()
     {
-        $result = static::$connectionHelper->sendWithArrayAnswer('someAction');
+        static::$connectionService->method('withArrayResponse')
+            ->with('sendMessage?chat_id=111112&text=simple test')
+            ->willReturn(static::$fakedData['sendMessage']['output']);
 
-        self::assertEquals([], $result);
-        self::assertNotEquals((object)[], $result);
+        $result = static::$messageHelper->sendWithArrayResponse(111112, 'simple test');
+
+        self::assertEquals(static::$fakedData['sendMessage']['output'], $result);
         self::assertNotNull($result);
     }
 
     public function testSuccessfulSendWithObjectResponse()
     {
-        $result = static::$connectionHelper->sendWithObjectAnswer('someAction');
+        static::$connectionService->method('withObjectResponse')
+            ->with('sendMessage?chat_id=111111&text=simple test')
+            ->willReturn((object)static::$fakedData['sendMessage']['output']);
 
-        self::assertEquals((object)[], $result);
-        self::assertNotEquals([], $result);
+        $result = static::$messageHelper->sendWithObjectResponse(111111, 'simple test');
+
+        self::assertEquals((object)static::$fakedData['sendMessage']['output'], $result);
         self::assertNotNull($result);
     }
 }

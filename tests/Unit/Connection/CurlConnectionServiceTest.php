@@ -13,7 +13,7 @@ class CurlConnectionServiceTest extends LibraryTestCase
 {
     public function testSuccessfulConnectWithArrayResponse()
     {
-        $result = static::$connectionService->withArrayResponse();
+        $result = static::$connectionService->withArrayResponse('getMe');
 
         self::assertEquals([], $result);
         self::assertNotEquals((object)[], $result);
@@ -22,7 +22,7 @@ class CurlConnectionServiceTest extends LibraryTestCase
 
     public function testSuccessfulConnectWithObjectResponse()
     {
-        $result = static::$connectionService->withObjectResponse();
+        $result = static::$connectionService->withObjectResponse('getMe');
 
         self::assertEquals((object)[], $result);
         self::assertNotEquals([], $result);

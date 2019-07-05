@@ -3,7 +3,7 @@
 <a href="https://packagist.org/packages/tahrz/simple-telegram-bot">![simple-telegram-bot](https://img.shields.io/packagist/dt/tahrz/simple-telegram-bot.svg?style=for-the-badge)</a>
 
 This library will help you, to create php telegram bot of any complexity. 
-> **v 1.3.0**
+> **v 1.3.4**
 
 **Add library to composer:**
 ```
@@ -25,13 +25,13 @@ To create an API request, use:
 $connectionHelper = new ConnectionHelper($connectionService);
 
 // make connection without answer
-$connectionHelper->sendWithoutAnswer('<API_METHOD_NAME>');
+$connectionHelper->sendWithoutResponse('<API_METHOD_NAME>');
 
 // make connection with array answer type
-$arrayResult = $connectionHelper->sendWithArrayAnswer('<API_METHOD_NAME>'); 
+$arrayResult = $connectionHelper->sendWithArrayResponse('<API_METHOD_NAME>'); 
 
 // make connection with object anaswer type
-$objectResult = $connectionHelper->sendWithObjectAnswer('<API_METHOD_NAME>'); 
+$objectResult = $connectionHelper->sendWithObjectResponse('<API_METHOD_NAME>'); 
 ```
 
 > Also, you can use `webhookConfigurationHelper`, witch build under `ConnectionService`,

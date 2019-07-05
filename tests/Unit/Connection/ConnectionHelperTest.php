@@ -3,6 +3,7 @@
 namespace Tests\Unit\Connection;
 
 use Tests\LibraryTestCase;
+use SimpleTelegramBot\Connection\ConnectionHelper;
 
 /**
  * Class ConnectionHelperTest
@@ -10,21 +11,39 @@ use Tests\LibraryTestCase;
  */
 class ConnectionHelperTest extends LibraryTestCase
 {
+    /**
+     * @var ConnectionHelper
+     */
+    private static $connectionHelper;
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        static::$connectionHelper = new ConnectionHelper(static::$connectionService);
+    }
+
     public function testSuccessfulSendWithArrayResponse()
     {
-        $result = static::$connectionHelper->sendWithArrayAnswer('someAction');
+        static::$connectionService->method('withArrayResponse')
+            ->with('getMe')
+            ->willReturn(static::$fakedData['getMe']['output']);
 
-        self::assertEquals([], $result);
-        self::assertNotEquals((object)[], $result);
+        $result = static::$connectionHelper->sendWithArrayResponse('getMe');
+
+        self::assertEquals(static::$fakedData['getMe']['output'], $result);
         self::assertNotNull($result);
     }
 
     public function testSuccessfulSendWithObjectResponse()
     {
-        $result = static::$connectionHelper->sendWithObjectAnswer('someAction');
+        static::$connectionService->method('withObjectResponse')
+            ->with('getMe')
+            ->willReturn((object)static::$fakedData['getMe']['output']);
 
-        self::assertEquals((object)[], $result);
-        self::assertNotEquals([], $result);
+        $result = static::$connectionHelper->sendWithObjectResponse('getMe');
+
+        self::assertEquals((object)static::$fakedData['getMe']['output'], $result);
         self::assertNotNull($result);
     }
 }

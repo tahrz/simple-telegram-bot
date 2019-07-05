@@ -3,9 +3,9 @@
 namespace SimpleTelegramBot\Connection;
 
 /**
- * Class ConnectionServiceInterface
+ * Interface ConnectionService
  *
- * @package SimpleTelegramBot\Contracts
+ * @package SimpleTelegramBot\Connection
  */
 interface ConnectionService
 {
@@ -15,12 +15,14 @@ interface ConnectionService
     public function init(string $action): void;
 
     /**
+     * @param string $action
      * @return array
      */
-    public function withArrayResponse(): array;
+    public function withArrayResponse(string $action): array;
 
     /**
+     * @param string $action
      * @return object
      */
-    public function withObjectResponse(): object;
+    public function withObjectResponse(string $action): object;
 }

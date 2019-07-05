@@ -3,6 +3,7 @@
 namespace Tests\Unit\Update;
 
 use Tests\LibraryTestCase;
+use SimpleTelegramBot\Update\GetUpdateHelper;
 
 /**
  * Class GetUpdateHelperTest
@@ -11,21 +12,39 @@ use Tests\LibraryTestCase;
  */
 class GetUpdateHelperTest extends LibraryTestCase
 {
+    /**
+     * @var GetUpdateHelper
+     */
+    private static $getUpdateHelper;
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        static::$getUpdateHelper = new GetUpdateHelper(static::$connectionService);
+    }
+
     public function testSuccessfulSendWithArrayResponse()
     {
-        $result = static::$connectionService->withArrayResponse();
+        static::$connectionService->method('withArrayResponse')
+            ->with('getUpdates')
+            ->willReturn(static::$fakedData['getUpdates']['output']);
 
-        self::assertEquals([], $result);
-        self::assertNotEquals((object)[], $result);
+        $result = static::$getUpdateHelper->asArray();
+
+        self::assertEquals(static::$fakedData['getUpdates']['output'], $result);
         self::assertNotNull($result);
     }
 
     public function testSuccessfulSendWithObjectResponse()
     {
-        $result = static::$connectionService->withObjectResponse();
+        static::$connectionService->method('withObjectResponse')
+            ->with('getUpdates')
+            ->willReturn((object)static::$fakedData['getUpdates']['output']);
 
-        self::assertEquals((object)[], $result);
-        self::assertNotEquals([], $result);
+        $result = static::$getUpdateHelper->asObject();
+
+        self::assertEquals((object)static::$fakedData['getUpdates']['output'], $result);
         self::assertNotNull($result);
     }
 }

@@ -1,13 +1,11 @@
 <?php declare(strict_types=1);
 
-namespace SimpleTelegramBot\Helpers\Updates;
-
-use SimpleTelegramBot\Contracts\GetUpdate;
+namespace SimpleTelegramBot\Update;
 
 /**
- * Class GetUpdatesWithWebhookHelper
+ * Class WebhookGetUpdateHelper
  *
- * @package SimpleTelegramBot\Services\Updates
+ * @package SimpleTelegramBot\Update
  */
 class WebhookGetUpdateHelper implements GetUpdate
 {

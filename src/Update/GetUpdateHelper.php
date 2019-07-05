@@ -1,14 +1,13 @@
 <?php declare(strict_types=1);
 
-namespace SimpleTelegramBot\Helpers\Updates;
+namespace SimpleTelegramBot\Update;
 
-use SimpleTelegramBot\Contracts\GetUpdate;
 use SimpleTelegramBot\Connection\ConnectionService;
 
 /**
- * Class GetUpdatesHelper
+ * Class GetUpdateHelper
  *
- * @package SimpleTelegramBot\Services\Updates
+ * @package SimpleTelegramBot\Update
  */
 class GetUpdateHelper implements GetUpdate
 {
@@ -32,9 +31,7 @@ class GetUpdateHelper implements GetUpdate
      */
     public function asArray(): array
     {
-        $this->connectionService->init('getUpdates');
-
-        return $this->connectionService->withArrayResponse();
+        return $this->connectionService->withArrayResponse('getUpdates');
     }
 
     /**
@@ -42,8 +39,6 @@ class GetUpdateHelper implements GetUpdate
      */
     public function asObject(): object
     {
-        $this->connectionService->init('getUpdates');
-
-        return $this->connectionService->withObjectResponse();
+        return $this->connectionService->withObjectResponse('getUpdates');
     }
 }

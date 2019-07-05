@@ -3,6 +3,7 @@
 namespace Tests\Unit\Update;
 
 use Tests\LibraryTestCase;
+use SimpleTelegramBot\Update\WebhookConfigurationHelper;
 
 /**
  * Class WebhookConfigurationHelperTest
@@ -11,30 +12,39 @@ use Tests\LibraryTestCase;
  */
 class WebhookConfigurationHelperTest extends LibraryTestCase
 {
-    public function testCorrectTypeReturnedFromSetWebhook()
-    {
-        $result = static::$connectionService->withArrayResponse();
+    /**
+     * @var WebhookConfigurationHelper
+     */
+    private static $webhookConfigurationHelper;
 
-        self::assertEquals([], $result);
-        self::assertNotEquals((object)[], $result);
-        self::assertNotNull($result);
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        static::$webhookConfigurationHelper = new WebhookConfigurationHelper(static::$connectionService);
     }
 
     public function testCorrectTypeReturnedFromRemoveWebhook()
     {
-        $result = static::$connectionService->withArrayResponse();
+        static::$connectionService->method('withArrayResponse')
+            ->with('getWebhookInfo')
+            ->willReturn(static::$fakedData['getWebhookInfo']['output']);
 
-        self::assertEquals([], $result);
-        self::assertNotEquals((object)[], $result);
+        $result = static::$webhookConfigurationHelper->getWebhookInfo();
+
+        self::assertEquals(static::$fakedData['getWebhookInfo']['output'], $result);
         self::assertNotNull($result);
     }
 
     public function testCorrectTypeReturnedFromGetWebhookInfo()
     {
-        $result = static::$connectionService->withArrayResponse();
+        static::$connectionService->method('withArrayResponse')
+            ->with('setWebhook?url=')
+            ->willReturn(static::$fakedData['deleteWebhook']['output']);
 
-        self::assertEquals([], $result);
-        self::assertNotEquals((object)[], $result);
+        $result = static::$webhookConfigurationHelper->removeWebhook();
+
+        self::assertEquals(static::$fakedData['deleteWebhook']['output'], $result);
         self::assertNotNull($result);
     }
 }

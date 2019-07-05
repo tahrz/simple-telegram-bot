@@ -1,21 +1,38 @@
 <?php declare(strict_types=1);
 
-namespace SimpleTelegramBot\Helpers;
+namespace SimpleTelegramBot\Chat;
+
+use SimpleTelegramBot\Connection\ConnectionService;
 
 /**
  * Class MessageHelper
  *
- * @package SimpleTelegramBot\Helpers
+ * @package SimpleTelegramBot\Chat
  */
 class MessageHelper
 {
     /**
+     * @var ConnectionService
+     */
+    private $connectionService;
+
+    /**
+     * MessageHelper constructor.
+     *
+     * @param ConnectionService $connectionService
+     */
+    public function __construct(ConnectionService $connectionService)
+    {
+        $this->connectionService = $connectionService;
+    }
+
+    /**
      * @param int $chatId
      * @param string $message
      */
-    public static function sendWithoutAnswer(int $chatId, string $message): void
+    public function sendWithoutResponse(int $chatId, string $message): void
     {
-        ConnectionHelper::sendWithoutAnswer('sendMessage?chat_id=' . $chatId .'&text=' . $message);
+        $this->connectionService->init('sendMessage?chat_id=' . $chatId .'&text=' . $message);
     }
 
     /**
@@ -23,9 +40,9 @@ class MessageHelper
      * @param string $message
      * @return array
      */
-    public static function sendWithArrayResponse(int $chatId, string $message): array
+    public function sendWithArrayResponse(int $chatId, string $message): array
     {
-        return ConnectionHelper::sendWithArrayAnswer('sendMessage?chat_id=' . $chatId .'&text=' . $message);
+        return $this->connectionService->withArrayResponse('sendMessage?chat_id=' . $chatId .'&text=' . $message);
     }
 
     /**
@@ -33,8 +50,8 @@ class MessageHelper
      * @param string $message
      * @return object
      */
-    public static function sendWithObjectResponse(int $chatId, string $message): object
+    public function sendWithObjectResponse(int $chatId, string $message): object
     {
-        return ConnectionHelper::sendWithObjectAnswer('sendMessage?chat_id=' . $chatId .'&text=' . $message);
+        return $this->connectionService->withObjectResponse('sendMessage?chat_id=' . $chatId .'&text=' . $message);
     }
 }

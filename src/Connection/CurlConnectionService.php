@@ -5,7 +5,7 @@ namespace SimpleTelegramBot\Connection;
 /**
  * Class CurlConnectionService
  *
- * @package SimpleTelegramBot\Services\Connection
+ * @package SimpleTelegramBot\Connection
  */
 final class CurlConnectionService implements ConnectionService
 {
@@ -29,18 +29,24 @@ final class CurlConnectionService implements ConnectionService
     }
 
     /**
+     * @param string $action
      * @return array
      */
-    public function withArrayResponse(): array
+    public function withArrayResponse(string $action): array
     {
+        $this->init($action);
+
         return json_decode($this->output, true);
     }
 
     /**
+     * @param string $action
      * @return object
      */
-    public function withObjectResponse(): object
+    public function withObjectResponse(string $action): object
     {
+        $this->init($action);
+
         return json_decode($this->output, false);
     }
 }

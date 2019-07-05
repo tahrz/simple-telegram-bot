@@ -5,7 +5,7 @@ namespace SimpleTelegramBot\Connection;
 /**
  * Class ConnectionHelper
  *
- * @package SimpleTelegramBot\Helpers
+ * @package SimpleTelegramBot\Connection
  */
 class ConnectionHelper
 {
@@ -27,7 +27,7 @@ class ConnectionHelper
     /**
      * @param string $action
      */
-    public function sendWithoutAnswer(string $action): void
+    public function sendWithoutResponse(string $action): void
     {
         $this->connectionService->init($action);
     }
@@ -36,21 +36,17 @@ class ConnectionHelper
      * @param string $action
      * @return array
      */
-    public function sendWithArrayAnswer(string $action): array
+    public function sendWithArrayResponse(string $action): array
     {
-        $this->connectionService->init($action);
-
-        return $this->connectionService->withArrayResponse();
+        return $this->connectionService->withArrayResponse($action);
     }
 
     /**
      * @param string $action
      * @return object
      */
-    public function sendWithObjectAnswer(string $action): object
+    public function sendWithObjectResponse(string $action): object
     {
-        $this->connectionService->init($action);
-
-        return $this->connectionService->withObjectResponse();
+        return $this->connectionService->withObjectResponse($action);
     }
 }

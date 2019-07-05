@@ -1,13 +1,13 @@
 <?php declare(strict_types=1);
 
-namespace SimpleTelegramBot\Helpers;
+namespace SimpleTelegramBot\Update;
 
 use SimpleTelegramBot\Connection\ConnectionService;
 
 /**
- * Class WebhookHelper
+ * Class WebhookConfigurationHelper
  *
- * @package SimpleTelegramBot\Helpers
+ * @package SimpleTelegramBot\Update
  */
 class WebhookConfigurationHelper
 {
@@ -31,9 +31,7 @@ class WebhookConfigurationHelper
      */
     public function setWebhook(): array
     {
-        $this->connectionService->init('setWebhook?url=' . WEBHOOK_URL);
-
-        return $this->connectionService->withArrayResponse();
+        return $this->connectionService->withArrayResponse('setWebhook?url=' . WEBHOOK_URL);
     }
 
     /**
@@ -41,9 +39,7 @@ class WebhookConfigurationHelper
      */
     public function removeWebhook(): array
     {
-        $this->connectionService->init('setWebhook?url=');
-
-        return $this->connectionService->withArrayResponse();
+        return $this->connectionService->withArrayResponse('setWebhook?url=');
     }
 
     /**
@@ -51,8 +47,6 @@ class WebhookConfigurationHelper
      */
     public function getWebhookInfo(): array
     {
-        $this->connectionService->init('getWebhookInfo');
-
-        return $this->connectionService->withArrayResponse();
+        return $this->connectionService->withArrayResponse('getWebhookInfo');
     }
 }

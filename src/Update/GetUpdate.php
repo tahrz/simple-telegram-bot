@@ -1,11 +1,11 @@
 <?php declare(strict_types=1);
 
-namespace SimpleTelegramBot\Contracts;
+namespace SimpleTelegramBot\Update;
 
 /**
- * Class GetUpdateInterface
+ * Interface GetUpdate
  *
- * @package SimpleTelegramBot\Contracts
+ * @package SimpleTelegramBot\Update
  */
 interface GetUpdate
 {

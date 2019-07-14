@@ -3,7 +3,7 @@
 <a href="https://packagist.org/packages/tahrz/simple-telegram-bot">![simple-telegram-bot](https://img.shields.io/packagist/dt/tahrz/simple-telegram-bot.svg?style=for-the-badge)</a>
 
 This library will help you, to create php telegram bot of any complexity. 
-> **v 1.3.4**
+> **v 1.3.5**
 
 **Add library to composer:**
 ```

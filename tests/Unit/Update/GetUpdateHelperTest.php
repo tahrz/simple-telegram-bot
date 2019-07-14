@@ -24,7 +24,7 @@ class GetUpdateHelperTest extends LibraryTestCase
         static::$getUpdateHelper = new GetUpdateHelper(static::$connectionService);
     }
 
-    public function testSuccessfulSendWithArrayResponse()
+    public function testSuccessfulSendWithArrayResponse(): void
     {
         static::$connectionService->method('withArrayResponse')
             ->with('getUpdates')
@@ -36,7 +36,7 @@ class GetUpdateHelperTest extends LibraryTestCase
         self::assertNotNull($result);
     }
 
-    public function testSuccessfulSendWithObjectResponse()
+    public function testSuccessfulSendWithObjectResponse(): void
     {
         static::$connectionService->method('withObjectResponse')
             ->with('getUpdates')

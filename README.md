@@ -21,17 +21,17 @@ define('WEBHOOK_URL', '<WEBHOOK_HTTPS_URL>');
 
 To create an API request, use:
 ```php
-// create instance of ConnectionHelper
-$connectionHelper = new ConnectionHelper($connectionService);
+// create instance of ConnectionService
+$connectionService = new ConnectionService();
 
 // make connection without answer
-$connectionHelper->sendWithoutResponse('<API_METHOD_NAME>');
+$connectionService->init('<API_METHOD_NAME>');
 
 // make connection with array answer type
-$arrayResult = $connectionHelper->sendWithArrayResponse('<API_METHOD_NAME>'); 
+$arrayResult = $connectionService->withArrayResponse('<API_METHOD_NAME>'); 
 
 // make connection with object anaswer type
-$objectResult = $connectionHelper->sendWithObjectResponse('<API_METHOD_NAME>'); 
+$objectResult = $connectionService->withObjectResponse('<API_METHOD_NAME>'); 
 ```
 
 > Also, you can use `webhookConfigurationHelper`, witch build under `ConnectionService`,

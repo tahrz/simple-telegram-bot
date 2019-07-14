@@ -24,7 +24,7 @@ class WebhookConfigurationHelperTest extends LibraryTestCase
         static::$webhookConfigurationHelper = new WebhookConfigurationHelper(static::$connectionService);
     }
 
-    public function testCorrectTypeReturnedFromRemoveWebhook()
+    public function testCorrectTypeReturnedFromRemoveWebhook(): void
     {
         static::$connectionService->method('withArrayResponse')
             ->with('getWebhookInfo')
@@ -36,7 +36,7 @@ class WebhookConfigurationHelperTest extends LibraryTestCase
         self::assertNotNull($result);
     }
 
-    public function testCorrectTypeReturnedFromGetWebhookInfo()
+    public function testCorrectTypeReturnedFromGetWebhookInfo(): void
     {
         static::$connectionService->method('withArrayResponse')
             ->with('setWebhook?url=')

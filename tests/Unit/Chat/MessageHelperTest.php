@@ -24,7 +24,7 @@ class MessageHelperTest extends LibraryTestCase
         static::$messageHelper = new MessageHelper(static::$connectionService);
     }
 
-    public function testSuccessfulSendWithArrayResponse()
+    public function testSuccessfulSendWithArrayResponse(): void
     {
         static::$connectionService->method('withArrayResponse')
             ->with('sendMessage?chat_id=111112&text=simple test')
@@ -36,7 +36,7 @@ class MessageHelperTest extends LibraryTestCase
         self::assertNotNull($result);
     }
 
-    public function testSuccessfulSendWithObjectResponse()
+    public function testSuccessfulSendWithObjectResponse(): void
     {
         static::$connectionService->method('withObjectResponse')
             ->with('sendMessage?chat_id=111111&text=simple test')

@@ -11,7 +11,7 @@ use Tests\LibraryTestCase;
  */
 class CurlConnectionServiceTest extends LibraryTestCase
 {
-    public function testSuccessfulConnectWithArrayResponse()
+    public function testSuccessfulConnectWithArrayResponse(): void
     {
         $result = static::$connectionService->withArrayResponse('getMe');
 
@@ -20,7 +20,7 @@ class CurlConnectionServiceTest extends LibraryTestCase
         self::assertNotNull($result);
     }
 
-    public function testSuccessfulConnectWithObjectResponse()
+    public function testSuccessfulConnectWithObjectResponse(): void
     {
         $result = static::$connectionService->withObjectResponse('getMe');
 

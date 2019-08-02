@@ -57,8 +57,8 @@ $removeWebhook = $webhookConfigurationHelper->removeWebhook();
 // create instance of WebhookGetUpdateHelper
 $webhookUpdateHelper = new WebhookGetUpdateHelper();
 
-// create instance of GetUpdateHelert
-$getUpdateHelper = new GetUpdateHelert($connectionService);
+// create instance of GetUpdateHelper
+$getUpdateHelper = new GetUpdateHelper($connectionService);
 
 // work only if you add webhook
 $updatesWithWebhookAsArray = $webhookUpdateHelper->asArray();

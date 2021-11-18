@@ -1,10 +1,10 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace SimpleTelegramBot\Connection;
 
 /**
- * Interface ConnectionService
- *
  * @package SimpleTelegramBot\Connection
  */
 interface ConnectionService

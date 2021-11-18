@@ -3,7 +3,7 @@
   "description": "Packadge with connection service and simple helpers",
   "keywords": ["PHP telegram bot", "simple telegram bot library", "webhook", "telegram bot api", "PHP"],
   "type": "library",
-  "version": "1.3.5",
+  "version": "2.0.0",
   "license": "MIT",
   "authors": [
     {
@@ -13,7 +13,7 @@
     }
   ],
   "require": {
-    "php": "^7.2"
+    "php": "^8.0"
   },
   "autoload": {
     "psr-4": {
